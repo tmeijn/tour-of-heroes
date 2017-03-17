@@ -1,6 +1,6 @@
 import { toPromise } from 'rxjs/operator/toPromise';
 import { Headers, Http } from '@angular/http';
-import { Hero } from './models/hero';
+import { Hero } from './shared/hero.model';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 

@@ -1,5 +1,5 @@
-import { Hero } from '../models/hero';
-import { HeroService } from '../hero.service';
+import { Hero } from '../heroes/shared/hero.model';
+import { HeroService } from '../heroes/hero.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

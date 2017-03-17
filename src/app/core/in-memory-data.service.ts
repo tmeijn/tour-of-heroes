@@ -1,4 +1,4 @@
-import { Hero } from './models/hero';
+import { Hero } from '../heroes/shared/hero.model';
 import { create } from 'domain';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 

@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { HeroService } from '../hero.service';
 
-import { Hero } from '../models/hero';
+import { Hero } from '../shared/hero.model';
 
 
 @Component({
