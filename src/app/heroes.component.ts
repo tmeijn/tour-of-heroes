@@ -29,7 +29,13 @@ import { Hero } from './models/hero';
       })),
       transition('inactive => active', animate('100ms ease-in')),
       transition('active => inactive', animate('100ms ease-out')),
-      transition('* => void', [animate(200, style({opacity: '0'}))])
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('600ms ease-out')
+      ]),
+      transition(':leave', [
+        animate(200, style({ transform: 'translateX(200%)', opacity: '0' }))
+      ])
     ])
   ]
 })
@@ -37,6 +43,7 @@ export class HeroesComponent implements OnInit {
   title = 'Tour of Heroes';
   heroes: Hero[];
   selectedHero: Hero;
+  //color: string = 'blue';
 
   constructor(
     private heroService: HeroService,

@@ -1,3 +1,4 @@
+import { HighlightDirective } from './highlight.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +20,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     AppComponent,
     HeroDetailComponent,
     HeroesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

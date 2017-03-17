@@ -2,7 +2,7 @@
   My Heroes
 </h2>
 <div>
-  <label for="">Hero name: </label><input type="text" #heroName>
+  <label for="" [myHighlight]="color">Hero name: </label><input type="text" #heroName>
   <button type="button" (click)="add(heroName.value); heroName.value=''">Add</button>
 </div>
 <ul class="heroes">
