@@ -1,14 +1,8 @@
-import { 
-  Component, 
-  OnInit,
-  Input,
-  trigger,
-  state,
-  style,
-  transition,
-  animate
- } from '@angular/core';
-import { Router } from '@angular/router';
+import { animate, Component, Input, OnInit, state, style, transition, trigger } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
+
 
 import { HeroService } from './hero.service';
 import { Hero } from './shared/hero.model';
@@ -45,13 +39,18 @@ export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   //color: string = 'blue';
 
+  private selectedId: number;
+
   constructor(
     private heroService: HeroService,
-    private _router: Router
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
     this.getHeroes();
+    
+    this.selectedId = +this._activatedRoute.snapshot.params['id'];
   }
 
   add(name: string): void {
@@ -74,11 +73,22 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    this.heroService.getHeroes().then(heroes => {
+      this.heroes = heroes
+      this.heroes.forEach(hero => this.isSelected(hero));
+    });
   }
 
   gotoDetail(): void {
-    this._router.navigate(['/detail', this.selectedHero.id]);
+    this._router.navigate(['/hero', this.selectedHero.id]);
+  }
+
+  isSelected(hero: Hero) { 
+    if(hero.id === this.selectedId) {
+      hero.state = 'active';
+    } else {
+      hero.state = 'inactive';
+    }
   }
 
   onSelect(hero: Hero): void {
