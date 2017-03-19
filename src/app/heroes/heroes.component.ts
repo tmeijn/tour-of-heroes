@@ -11,7 +11,7 @@ import {
 import { Router } from '@angular/router';
 
 import { HeroService } from './hero.service';
-import { Hero } from './models/hero';
+import { Hero } from './shared/hero.model';
 
 @Component({
   selector: 'app-heroes',
@@ -69,6 +69,7 @@ export class HeroesComponent implements OnInit {
     this.heroService.deleteHero(hero)
       .then(() => {
         this.heroes = this.heroes.filter(obj => obj !== hero);
+        this.selectedHero = null;
       })
   }
 

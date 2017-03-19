@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './core/in-memory-data.service';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { InMemoryDataService } from './core/in-memory-data.service';
     HeroDetailComponent,
     HeroesComponent,
     DashboardComponent,
-    HighlightDirective
+    HighlightDirective,
+    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
