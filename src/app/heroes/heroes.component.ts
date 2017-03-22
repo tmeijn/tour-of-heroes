@@ -72,6 +72,8 @@ export class HeroesComponent implements OnInit {
       })
   }
 
+  // Retrieves the heroes and sets heroes array. Also updates the animation state.
+
   getHeroes(): void {
     this.heroService.getHeroes().then(heroes => {
       this.heroes = heroes
@@ -79,17 +81,21 @@ export class HeroesComponent implements OnInit {
     });
   }
 
+  // Navigates to the HeroDetailComponent with the currently selected hero.
+
   gotoDetail(): void {
     this._router.navigate(['/hero', this.selectedHero.id]);
   }
 
-  isSelected(hero: Hero) { 
+  // Resets the previous selected hero to active state when returning to the detail component.
+
+  private isSelected(hero: Hero) { 
     if(hero.id === this.selectedId) {
-      hero.state = 'active';
-    } else {
-      hero.state = 'inactive';
+      this.onSelect(hero);
     }
   }
+
+  // Stores the selected hero and sets animantion states to represent selection in view.
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;

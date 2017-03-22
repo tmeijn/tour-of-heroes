@@ -3,28 +3,28 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { HeroService } from '../hero.service';
+import { CrisisService } from '../crisis.service';
 
-import { Hero } from '../shared/hero.model';
+import { Crisis } from '../shared/crisis.model';
 
 import { slideInDownAnimation } from '../../animations';
 
 
 @Component({
-  selector: 'app-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css'],
+  selector: 'app-crisis-detail',
+  templateUrl: './crisis-detail.component.html',
+  styleUrls: ['./crisis-detail.component.css'],
   animations: [ slideInDownAnimation ]
 })
-export class HeroDetailComponent implements OnInit {
+export class CrisisDetailComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
   @HostBinding('style.position') position = 'absolute';
 
-  hero: Hero;
+  crisis: Crisis;
   
   constructor(
-    private _heroService: HeroService,
+    private _crisisService: CrisisService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _location: Location
@@ -33,17 +33,17 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this._route.params
       .switchMap((params: Params) => 
-        this._heroService.getHero(+params['id']))
-      .subscribe(hero => this.hero = hero);
+        this._crisisService.getHero(+params['id']))
+      .subscribe(crisis => this.crisis = crisis);
   }
 
   private goBack(): void {
-    let heroId = this.hero ? this.hero.id : null;
-    this._router.navigate(['/heroes', { id: heroId }]);
+    let crisisId = this.crisis ? this.crisis.id : null;
+    this._router.navigate(['/heroes', { id: crisisId }]);
   }
 
   save(): void {
-    this._heroService.update(this.hero)
+    this._crisisService.update(this.crisis)
       .then(() => this.goBack());
   }
 

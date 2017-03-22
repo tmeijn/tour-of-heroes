@@ -1,3 +1,4 @@
+import { CrisisCenterModule } from './crisis-center/crisis-center.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +31,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     HeroesModule,
+    CrisisCenterModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]
