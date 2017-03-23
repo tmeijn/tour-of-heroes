@@ -33,13 +33,13 @@ export class CrisisDetailComponent implements OnInit {
   ngOnInit(): void {
     this._route.params
       .switchMap((params: Params) => 
-        this._crisisService.getHero(+params['id']))
+        this._crisisService.getCrisis(+params['id']))
       .subscribe(crisis => this.crisis = crisis);
   }
 
   private goBack(): void {
     let crisisId = this.crisis ? this.crisis.id : null;
-    this._router.navigate(['/heroes', { id: crisisId }]);
+    this._router.navigate(['/crisis-center', { id: crisisId }]);
   }
 
   save(): void {

@@ -7,6 +7,6 @@
     "**/.DS_Store": true,
     "**/app/**/*.css": true,
     "**/app/**/*.spec.ts": true
-},
-"vsicons.presets.angular": true
+  },
+  "vsicons.presets.angular": true
 }

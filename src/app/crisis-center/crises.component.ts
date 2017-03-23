@@ -12,7 +12,7 @@ import { Crisis } from './shared/crisis.model';
   templateUrl: './crises.component.html',
   styleUrls: ['./crises.component.css'],
   animations: [
-    trigger('heroState', [
+    trigger('crisisState', [
       state('inactive', style({
         backgroundColor: '#eee',
         transform: 'scale(1)'
@@ -36,33 +36,32 @@ import { Crisis } from './shared/crisis.model';
 export class CrisesComponent implements OnInit {
   title = 'Tour of crises';
   crises: Crisis[];
-  selectedHero: Crisis;
+  selectedCrisis: Crisis;
   //color: string = 'blue';
 
   private selectedId: number;
 
   constructor(
-    private heroService: CrisisService,
+    private crisisService: CrisisService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
-    // this.getcrises();
+    this.getCrises();
     
     // this.selectedId = +this._activatedRoute.snapshot.params['id'];
   }
 
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if(!name) return;
+  add(name: string): void {
+    name = name.trim();
+    if(!name) return;
 
-  //   this.heroService.createHero(name)
-  //     .then(crisis => {
-  //       this.crises.push(crisis);
-  //       this.selectedHero = null;
-  //     })
-  // }
+    this.crisisService.createCrisis(name)
+      .then(crisis => {
+        this.selectedCrisis = null;
+      })
+  }
 
   // delete(crisis: crisis): void {
   //   this.heroService.deleteHero(crisis)
@@ -74,18 +73,12 @@ export class CrisesComponent implements OnInit {
 
   // // Retrieves the crises and sets crises array. Also updates the animation state.
 
-  // getcrises(): void {
-  //   this.heroService.getcrises().then(crises => {
-  //     this.crises = crises
-  //     this.crises.forEach(crisis => this.isSelected(crisis));
-  //   });
-  // }
-
-  // // Navigates to the HeroDetailComponent with the currently selected crisis.
-
-  // gotoDetail(): void {
-  //   this._router.navigate(['/crisis', this.selectedHero.id]);
-  // }
+  getCrises(): void {
+    this.crisisService.getCrises().then(crises => {
+      this.crises = crises
+      // this.crises.forEach(crisis => this.isSelected(crisis));
+    });
+  }
 
   // // Resets the previous selected crisis to active state when returning to the detail component.
 
@@ -97,11 +90,13 @@ export class CrisesComponent implements OnInit {
 
   // // Stores the selected crisis and sets animantion states to represent selection in view.
 
-  // onSelect(crisis: crisis): void {
-  //   this.selectedHero = crisis;
-  //   crisis.state = 'active';
-  //   this.crises
-  //     .filter(obj => obj !== crisis)
-  //     .map(obj => obj.state = 'inactive');
-  // } 
+  onSelect(crisis: Crisis): void {
+    this.selectedCrisis = crisis;
+    crisis.state = 'active';
+    this.crises
+      .filter(obj => obj !== crisis)
+      .map(obj => obj.state = 'inactive');
+
+    this._router.navigate([crisis.id], { relativeTo: this._activatedRoute })
+  } 
 }

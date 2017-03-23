@@ -1,21 +1,21 @@
-<h2>HEROES</h2>
+<h2>CRISES</h2>
 <div>
-  <label for="">crisis name: </label><input type="text" #heroName>
-  <button type="button" (click)="add(heroName.value); heroName.value=''">Add</button>
+  <label for="">crisis name: </label><input type="text" #crisisName>
+  <button type="button" (click)="add(crisisName.value); crisisName.value=''">Add</button>
 </div>
 <ul class="heroes">
-  <li *ngFor="let crisis of heroes"
-    [@heroState]="crisis.state"
+  <li *ngFor="let crisis of crises"
+    [@crisisState]="crisis.state"
     (click)="onSelect(crisis)"
-    [class.selected]="crisis === selectedHero">
+    [class.selected]="crisis === selectedCrisis">
     <span class="badge">{{ crisis.id }}</span> {{ crisis.name }}
     <button type="button" (click)="delete(crisis)">X</button>
   </li>
 </ul>
-<div *ngIf="selectedHero">
+<!--<div *ngIf="selectedCrisis">
   <h2>
-    {{ selectedHero.name | uppercase }} is my crisis
+    {{ selectedCrisis.name | uppercase }} is my crisis
   </h2>
   <button type="button" (click)="gotoDetail()">View Details</button>
-</div>
+</div>-->
 <router-outlet></router-outlet>
