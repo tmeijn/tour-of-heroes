@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from "app/shared/page-not-found/page-not-found.component";
+import { ComposeMessageComponent } from './shared/compose-message/compose-message.component';
 
 const ROUTES: Routes = [
   {
@@ -13,6 +14,11 @@ const ROUTES: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'compose',
+    component: ComposeMessageComponent,
+    outlet: 'popup'
   },
   { path: '**', component: PageNotFoundComponent }
 ];

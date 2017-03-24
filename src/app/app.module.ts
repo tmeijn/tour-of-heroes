@@ -17,13 +17,17 @@ import { InMemoryDataService } from './core/in-memory-data.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { ComposeMessageComponent } from './shared/compose-message/compose-message.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HighlightDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ComposeMessageComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
