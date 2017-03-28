@@ -22,6 +22,7 @@ export class CrisisDetailComponent implements OnInit {
   @HostBinding('style.position') position = 'absolute';
 
   crisis: Crisis;
+  editName: string;
   
   constructor(
     private _crisisService: CrisisService,
@@ -34,7 +35,7 @@ export class CrisisDetailComponent implements OnInit {
     this._route.params
       .switchMap((params: Params) => 
         this._crisisService.getCrisis(+params['id']))
-      .subscribe(crisis => this.crisis = crisis);
+      .subscribe(crisis => {this.crisis = crisis; this.editName = this.crisis.name});
   }
 
   private goBack(): void {
@@ -43,8 +44,10 @@ export class CrisisDetailComponent implements OnInit {
   }
 
   save(): void {
-    this._crisisService.update(this.crisis)
-      .then(() => this.goBack());
+    // //this._crisisService.update(this.crisis)
+    //   .then(() => this.goBack());
+    this.crisis.name = this.editName;
+    this.goBack();
   }
 
 

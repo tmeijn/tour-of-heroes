@@ -50,7 +50,7 @@ export class CrisesComponent implements OnInit {
   ngOnInit(): void {
     this.getCrises();
     
-    // this.selectedId = +this._activatedRoute.snapshot.params['id'];
+    this.selectedId = +this._activatedRoute.snapshot.params['id'];
   }
 
   add(name: string): void {
@@ -76,17 +76,17 @@ export class CrisesComponent implements OnInit {
   getCrises(): void {
     this.crisisService.getCrises().then(crises => {
       this.crises = crises
-      // this.crises.forEach(crisis => this.isSelected(crisis));
+      this.crises.forEach(crisis => this.isSelected(crisis));
     });
   }
 
   // // Resets the previous selected crisis to active state when returning to the detail component.
 
-  // private isSelected(crisis: crisis) { 
-  //   if(crisis.id === this.selectedId) {
-  //     this.onSelect(crisis);
-  //   }
-  // }
+  private isSelected(crisis: Crisis) { 
+    if(crisis.id === this.selectedId) {
+      this.onSelect(crisis);
+    }
+  }
 
   // // Stores the selected crisis and sets animantion states to represent selection in view.
 
