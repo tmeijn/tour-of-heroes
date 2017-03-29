@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ComposeMessageComponent } from './shared/compose-message/compose-message.component';
-
+import { DialogService } from './shared/dialog.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +42,8 @@ import { ComposeMessageComponent } from './shared/compose-message/compose-messag
     LoginRoutingModule,
     AppRoutingModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [DialogService]
 })
 export class AppModule {
   // Diagnostic only: inspect router configuration

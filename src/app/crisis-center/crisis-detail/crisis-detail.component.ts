@@ -1,5 +1,6 @@
+import { DialogService } from '../../shared/dialog.service';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, CanDeactivate, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
@@ -16,7 +17,7 @@ import { slideInDownAnimation } from '../../animations';
   styleUrls: ['./crisis-detail.component.css'],
   animations: [ slideInDownAnimation ]
 })
-export class CrisisDetailComponent implements OnInit {
+export class CrisisDetailComponent implements OnInit, CanDeactivate<CrisisDetailComponent> {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
   @HostBinding('style.position') position = 'absolute';
@@ -26,6 +27,7 @@ export class CrisisDetailComponent implements OnInit {
   
   constructor(
     private _crisisService: CrisisService,
+    private _dialogService: DialogService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _location: Location
@@ -36,6 +38,14 @@ export class CrisisDetailComponent implements OnInit {
       .switchMap((params: Params) => 
         this._crisisService.getCrisis(+params['id']))
       .subscribe(crisis => {this.crisis = crisis; this.editName = this.crisis.name});
+  }
+
+  canDeactivate(): Promise<boolean> | boolean {
+    if(!this.crisis || this.crisis.name === this.editName) {
+      return true;
+    }
+
+    return this._dialogService.confirm('Discard changes?');
   }
 
   private goBack(): void {

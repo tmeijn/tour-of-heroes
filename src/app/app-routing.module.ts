@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from "app/shared/page-not-found/page-not-found.component";
 import { ComposeMessageComponent } from './shared/compose-message/compose-message.component';
 
+import { CanDeactivateGuard } from './core/can-deactivate-guard.service';
+
 const ROUTES: Routes = [
   {
     path: '',
@@ -25,7 +27,8 @@ const ROUTES: Routes = [
 
 @NgModule({
     imports: [ RouterModule.forRoot(ROUTES) ],
-    exports: [ RouterModule ]
+    exports: [ RouterModule ],
+    providers: [CanDeactivateGuard]
 })
 
 export class AppRoutingModule {}
