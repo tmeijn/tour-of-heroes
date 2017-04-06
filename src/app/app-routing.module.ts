@@ -22,6 +22,10 @@ const ROUTES: Routes = [
     component: ComposeMessageComponent,
     outlet: 'popup'
   },
+  {
+    path: 'admin',
+    loadChildren: 'app/admin/admin.module#AdminModule',
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 

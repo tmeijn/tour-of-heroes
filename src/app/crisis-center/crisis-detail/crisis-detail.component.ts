@@ -34,10 +34,11 @@ export class CrisisDetailComponent implements OnInit, CanDeactivate<CrisisDetail
   ) { }
 
   ngOnInit(): void {
-    this._route.params
-      .switchMap((params: Params) => 
-        this._crisisService.getCrisis(+params['id']))
-      .subscribe(crisis => {this.crisis = crisis; this.editName = this.crisis.name});
+    this._route.data
+      .subscribe((data: { crisis: Crisis }) => {
+        this.editName = data.crisis.name;
+        this.crisis = data.crisis;
+      })
   }
 
   canDeactivate(): Promise<boolean> | boolean {

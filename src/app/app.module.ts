@@ -10,7 +10,6 @@ import { HighlightDirective } from './core/highlight.directive';
 
 import { HeroesModule } from './heroes/heroes.module';
 import { CrisisCenterModule } from './crisis-center/crisis-center.module';
-import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -38,7 +37,6 @@ import { DialogService } from './shared/dialog.service';
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     HeroesModule,
     CrisisCenterModule,
-    AdminModule,
     LoginRoutingModule,
     AppRoutingModule
   ],
