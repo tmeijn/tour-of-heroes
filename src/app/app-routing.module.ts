@@ -1,5 +1,6 @@
+import { AuthGuardService } from './core/auth-guard.service';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from "app/shared/page-not-found/page-not-found.component";
@@ -25,14 +26,19 @@ const ROUTES: Routes = [
   {
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule',
+    canLoad: [AuthGuardService]
+  },
+  {
+    path: 'crisis-center',
+    loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule'
   },
   { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(ROUTES) ],
+    imports: [ RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }) ],
     exports: [ RouterModule ],
-    providers: [CanDeactivateGuard]
+    providers: [CanDeactivateGuard, AuthGuardService]
 })
 
 export class AppRoutingModule {}

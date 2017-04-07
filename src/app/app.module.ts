@@ -9,7 +9,6 @@ import { Router } from "@angular/router";
 import { HighlightDirective } from './core/highlight.directive';
 
 import { HeroesModule } from './heroes/heroes.module';
-import { CrisisCenterModule } from './crisis-center/crisis-center.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -36,7 +35,6 @@ import { DialogService } from './shared/dialog.service';
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     HeroesModule,
-    CrisisCenterModule,
     LoginRoutingModule,
     AppRoutingModule
   ],
@@ -46,6 +44,6 @@ import { DialogService } from './shared/dialog.service';
 export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
-    //console.log('Routes:' , JSON.stringify(router.config, undefined, 2));
+    console.log('Routes:' , JSON.stringify(router.config, undefined, 2));
   }
  }

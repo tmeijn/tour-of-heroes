@@ -12,7 +12,7 @@ import { CrisisDetailResolver } from './crisis-detail/crisis-detail-resolver.ser
 
 const crisisCenterRoutes: Routes = [
   {
-    path: 'crisis-center', 
+    path: '', 
     component: CrisisCenterComponent,
     children: [
       {
